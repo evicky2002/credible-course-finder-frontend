@@ -6,7 +6,7 @@
         android:icon="@drawable/baseline_favorite_24"/>
     <item android:id="@+id/searchFragment"
         android:title="Search"
-        android:icon="@drawable/baseline_search_24"/>
+        android:icon="@drawable/search_icon"/>
     <item android:id="@+id/profileFragment"
         android:title="Profiles"
         android:icon="@drawable/baseline_account_circle_24"/>

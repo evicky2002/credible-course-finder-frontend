@@ -1,16 +1,17 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-}
+    id 'com.google.gms.google-services'
+    id("androidx.navigation.safeargs.kotlin")}
 apply plugin: 'kotlin-kapt'
 
 
 android {
-    namespace 'com.example.credible_course_recommender'
+    namespace 'com.project.credible_course_recommender'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.credible_course_recommender"
+        applicationId "com.project.credible_course_recommender"
         minSdk 24
         targetSdk 33
         versionCode 1
@@ -43,6 +44,8 @@ dependencies {
 
     // Room
     implementation "androidx.room:room-runtime:2.5.1"
+    implementation 'com.google.firebase:firebase-auth-ktx:21.0.3'
+    implementation 'com.google.android.gms:play-services-auth:20.1.0'
     kapt "androidx.room:room-compiler:2.5.1"
 
     // Kotlin Extensions and Coroutines support for Room
@@ -62,8 +65,8 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:4.5.0"
 
     // Navigation Components
-    implementation "androidx.navigation:navigation-fragment-ktx:2.2.1"
-    implementation "androidx.navigation:navigation-ui-ktx:2.2.1"
+    implementation "androidx.navigation:navigation-fragment-ktx:2.3.5"
+    implementation "androidx.navigation:navigation-ui-ktx:2.3.5"
 
     // Glide
     implementation 'com.github.bumptech.glide:glide:4.11.0'
@@ -88,4 +91,9 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.1'
 
+    //firebase
+    implementation platform('com.google.firebase:firebase-bom:31.5.0')
+    implementation 'com.google.firebase:firebase-analytics-ktx'
 }
+apply plugin: 'com.google.gms.google-services'
+apply plugin: "androidx.navigation.safeargs.kotlin"

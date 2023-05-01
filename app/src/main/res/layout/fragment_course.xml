@@ -3,12 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.CourseFragment">
+    tools:context="com.project.credible_course_recommender.ui.fragments.CourseFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <WebView
+        android:id="@+id/webView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent" >
 
+    </WebView>
+
+    <ProgressBar
+        android:id="@+id/cvProgress"
+        android:layout_width="100dp"
+        android:layout_gravity="center"
+        android:layout_height="100dp">
+
+    </ProgressBar>
 </FrameLayout>
