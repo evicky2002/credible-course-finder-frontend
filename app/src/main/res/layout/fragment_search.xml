@@ -84,7 +84,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="16dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/materialCardView56"
+                    app:layout_constraintEnd_toStartOf="@+id/filterBtn"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toEndOf="@+id/textView5"
                     app:layout_constraintTop_toTopOf="parent">
@@ -98,83 +98,44 @@
 
 
                         <com.google.android.material.button.MaterialButton
-                            android:id="@+id/materialButton"
+                            android:id="@+id/mbCoursera"
                             android:layout_width="wrap_content"
                             android:layout_height="30dp"
                             android:fontFamily="@font/montserrat_bold"
 
                             android:layout_gravity="center"
                             android:layout_margin="4dp"
-                            android:background="@drawable/gradient_button"
+                            android:background="@drawable/white_button"
                             android:gravity="center"
                             android:text="Coursera"
                             android:textSize="8sp"
-                            app:backgroundTint="@null"></com.google.android.material.button.MaterialButton>
+                            android:textColor="#CA3568"
+
+                            app:backgroundTint="@null">
+
+                        </com.google.android.material.button.MaterialButton>
 
                         <com.google.android.material.button.MaterialButton
-                            android:id="@+id/materialButton2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="30dp"
-                            android:layout_gravity="center"
-                            android:background="@drawable/gradient_button"
-                            android:fontFamily="@font/montserrat_bold"
-
-                            android:layout_margin="4dp"
-                            android:gravity="center"
-                            android:text="Udemy"
-                            android:textSize="8sp"
-                            app:backgroundTint="@color/white"
-                            android:textColor="#CA3568"></com.google.android.material.button.MaterialButton>
-
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/materialButton3"
+                            android:id="@+id/mbEdx"
                             android:layout_width="wrap_content"
                             android:layout_height="30dp"
                             android:layout_gravity="center"
                             android:layout_margin="4dp"
                             android:fontFamily="@font/montserrat_bold"
+                            android:textColor="#CA3568"
 
-                            android:background="@drawable/gradient_button"
+                            android:background="@drawable/white_button"
                             android:gravity="center"
-                            android:text="EDX"
+                            android:text="edx"
                             android:textSize="8sp"
-                            app:backgroundTint="@color/white"
-                            android:textColor="#CA3568"></com.google.android.material.button.MaterialButton>
+                            app:backgroundTint="@null"
+                          ></com.google.android.material.button.MaterialButton>
 
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/materialButton4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="30dp"
-                            android:layout_gravity="center"
-                            android:layout_margin="4dp"
-                            android:fontFamily="@font/montserrat_bold"
-
-                            android:background="@drawable/gradient_button"
-                            android:gravity="center"
-                            android:text="Udacity"
-                            android:textSize="8sp"
-                            app:backgroundTint="@color/white"
-                            android:textColor="#CA3568"></com.google.android.material.button.MaterialButton>
-
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/materialButton5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="30dp"
-                            android:layout_gravity="center"
-                            android:layout_margin="4dp"
-                            android:fontFamily="@font/montserrat_bold"
-
-                            android:background="@drawable/gradient_button"
-                            android:gravity="center"
-                            android:text="Google"
-                            android:textSize="8sp"
-                            app:backgroundTint="@color/white"
-                            android:textColor="#CA3568"></com.google.android.material.button.MaterialButton>
                     </LinearLayout>
                 </HorizontalScrollView>
 
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/materialCardView56"
+                    android:id="@+id/filterBtn"
                     android:layout_width="50dp"
 
                     android:layout_height="30dp"
@@ -214,7 +175,7 @@
             app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvCourses"
+            android:id="@+id/fl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -232,9 +193,12 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cvProgress"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:layout_editor_absoluteX="4dp"
-            tools:layout_editor_absoluteY="-23dp">
+            android:layout_height="0dp"
+            android:background="#ECECEC"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvDecider">
 
             <ProgressBar
                 android:id="@+id/progressBar2"

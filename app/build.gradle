@@ -94,6 +94,8 @@ dependencies {
     //firebase
     implementation platform('com.google.firebase:firebase-bom:31.5.0')
     implementation 'com.google.firebase:firebase-analytics-ktx'
+
+    implementation 'pub.hanks:smallbang:1.2.2'
 }
 apply plugin: 'com.google.gms.google-services'
 apply plugin: "androidx.navigation.safeargs.kotlin"

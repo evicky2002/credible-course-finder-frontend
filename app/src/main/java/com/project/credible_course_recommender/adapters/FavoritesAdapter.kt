@@ -20,21 +20,23 @@ import com.google.android.material.card.MaterialCardView
 import com.google.firebase.auth.FirebaseAuth
 import com.project.credible_course_recommender.R
 import com.project.credible_course_recommender.api.RetrofitInstance
-import com.project.credible_course_recommender.models.*
+import com.project.credible_course_recommender.models.AddToFavoritesResponse
+import com.project.credible_course_recommender.models.Course
+import com.project.credible_course_recommender.models.FavoritesPayload
+import com.project.credible_course_recommender.ui.CoursesViewModel
 import com.project.credible_course_recommender.ui.MainActivity
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import retrofit2.Response
 import xyz.hanks.library.bang.SmallBangView
 import java.math.RoundingMode
 import java.text.DecimalFormat
 
 
-class CourseAdapter(val context: Context) : RecyclerView.Adapter<CourseAdapter.CourseViewHolder>() {
-    inner class CourseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+class FavoritesAdapter(val context: Context) : RecyclerView.Adapter<FavoritesAdapter.FavoritesViewHolder>() {
+    inner class FavoritesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
     val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
+    var viewModel = (context as MainActivity).viewModel
 
 
     private val differCallback = object : DiffUtil.ItemCallback<Course>() {
@@ -49,8 +51,8 @@ class CourseAdapter(val context: Context) : RecyclerView.Adapter<CourseAdapter.C
 
     val differ = AsyncListDiffer(this, differCallback)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CourseViewHolder {
-        return CourseViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoritesViewHolder {
+        return FavoritesViewHolder(
             LayoutInflater.from(parent.context).inflate(
                 R.layout.item_course_preview,
                 parent, false
@@ -58,7 +60,7 @@ class CourseAdapter(val context: Context) : RecyclerView.Adapter<CourseAdapter.C
         )
     }
 
-    override fun onBindViewHolder(holder: CourseViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: FavoritesViewHolder, position: Int) {
         val course = differ.currentList[position]
         val tvCourseTitle: TextView = holder.itemView.findViewById(R.id.tvCourseTitle)
         val tvRatings: TextView = holder.itemView.findViewById(R.id.tvRatings)
@@ -70,6 +72,7 @@ class CourseAdapter(val context: Context) : RecyclerView.Adapter<CourseAdapter.C
         val btnVisit: MaterialCardView = holder.itemView.findViewById(R.id.btnVisit)
         val tvPricing: TextView = holder.itemView.findViewById(R.id.tvPricing)
         val imageViewAnimation: SmallBangView = holder.itemView.findViewById(R.id.imageViewAnimation)
+        imageViewAnimation.setSelected(true);
 
         imageViewAnimation.setOnClickListener{
             if (imageViewAnimation.isSelected()) {
@@ -78,6 +81,8 @@ class CourseAdapter(val context: Context) : RecyclerView.Adapter<CourseAdapter.C
                 MainScope().launch {
                     res = RetrofitInstance.api.removeFromFavorites(FavoritesPayload(mAuth.uid.toString(),course._id))
                     if(res.body()?.status.equals("ok")){
+                        viewModel.getFavorites(FavoritesPayload(mAuth.uid.toString()))
+
                         Toast.makeText(context, "Removed favorites", Toast.LENGTH_SHORT).show()
 
                     }else{
@@ -91,17 +96,6 @@ class CourseAdapter(val context: Context) : RecyclerView.Adapter<CourseAdapter.C
                 // then show animation.
                 imageViewAnimation.setSelected(true);
                 imageViewAnimation.likeAnimation();
-                var res: Response<AddToFavoritesResponse>
-                MainScope().launch {
-                    res = RetrofitInstance.api.addToFavorites(FavoritesPayload(mAuth.uid.toString(),course._id))
-                    if(res.body()?.status.equals("ok")){
-                        Toast.makeText(context, "Add to favorites", Toast.LENGTH_SHORT).show()
-
-                    }else{
-                            Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show()
-                    }
-
-                }
             }
         }
 
@@ -141,7 +135,7 @@ class CourseAdapter(val context: Context) : RecyclerView.Adapter<CourseAdapter.C
                 }
 
                 findNavController(it).navigate(
-                    R.id.action_searchFragment_to_courseFragment,
+                    R.id.action_favouritesFragment_to_courseFragment,
                     bundle
                 )
             }

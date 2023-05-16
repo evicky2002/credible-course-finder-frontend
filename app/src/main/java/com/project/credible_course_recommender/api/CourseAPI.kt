@@ -27,4 +27,23 @@ interface CourseAPI {
     @Headers("Content-Type: application/json")
     suspend fun addInterests(@Body payload: InterestsPayload
     ): Response<InterestsResponse>
+
+    @POST("api/v1/login/getFavorites")
+    @Headers("Content-Type: application/json")
+    suspend fun getFavorites(@Body payload: FavoritesPayload
+    ): Response<CourseResponse>
+
+    @POST("api/v1/login/addToFavorites")
+    @Headers("Content-Type: application/json")
+    suspend fun addToFavorites(@Body payload: FavoritesPayload
+    ): Response<AddToFavoritesResponse>
+
+    @POST("api/v1/login/removeFromFavorites")
+    @Headers("Content-Type: application/json")
+    suspend fun removeFromFavorites(@Body payload: FavoritesPayload
+    ): Response<AddToFavoritesResponse>
+    @POST("api/v1/login/getInterests")
+    @Headers("Content-Type: application/json")
+    suspend fun getInterests(@Body payload: UserPayload
+    ): Response<UserResponse>
 }
